@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Naitik — 3D Creator & Visual Designer Portfolio</title>
+  <meta name="description" content="Personal portfolio of Naitik, showcasing 3D visual design, motion direction, brand identities, and immersive interactive web experiences." />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Kanit', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    :root {
+      --bg-main: #0C0C0C;
+      --text-main: #D7E2EA;
+      --text-sub: rgba(215, 226, 234, 0.65);
+      --border-sub: rgba(215, 226, 234, 0.2);
+      --border-card: #D7E2EA;
+      --card-bg: #0C0C0C;
+      --hero-grad-start: #646973;
+      --hero-grad-end: #BBCCD7;
+      --services-bg: #FFFFFF;
+      --services-text: #0C0C0C;
+      --services-border: rgba(12, 12, 12, 0.15);
+      --footer-bg: #0C0C0C;
+      --footer-border: rgba(255, 255, 255, 0.1);
+      --theme-btn-bg: rgba(255, 255, 255, 0.08);
+    }
+
+    html.light {
+      --bg-main: #F3F4F6;
+      --text-main: #111827;
+      --text-sub: #4B5563;
+      --border-sub: rgba(17, 24, 39, 0.15);
+      --border-card: #1F2937;
+      --card-bg: #FFFFFF;
+      --hero-grad-start: #111827;
+      --hero-grad-end: #4B5563;
+      --services-bg: #111827;
+      --services-text: #F9FAFB;
+      --services-border: rgba(255, 255, 255, 0.15);
+      --footer-bg: #E5E7EB;
+      --footer-border: rgba(0, 0, 0, 0.1);
+      --theme-btn-bg: rgba(0, 0, 0, 0.06);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: 'Kanit', sans-serif;
+      min-height: 100%;
+      overflow-x: clip;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .hero-heading {
+      background: linear-gradient(180deg, var(--hero-grad-start) 0%, var(--hero-grad-end) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: background 0.3s ease;
+    }
+
+    .pill-btn {
+      background: linear-gradient(123deg, #18011F 7%, #B600A8 37%, #7621B0 72%, #BE4C00 100%);
+      box-shadow: 0px 4px 4px rgba(181, 1, 167, 0.25), 4px 4px 12px #7721B1 inset;
+      outline: 2px solid #ffffff;
+      outline-offset: -3px;
+    }
+
+    .glass-modal {
+      background-color: #111111;
+      border: 1px solid rgba(215, 226, 234, 0.2);
+      border-radius: 32px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body class="selection:bg-purple-500/30 selection:text-white">
+
+  <!-- 1. Thin Fixed Top Scroll Progress Bar -->
+  <div id="scroll-progress-bar" class="fixed top-0 left-0 right-0 h-[3px] z-50 origin-left pointer-events-none" style="transform: scaleX(0); background: linear-gradient(90deg, #7621B0 0%, #B600A8 50%, #BE4C00 100%); box-shadow: 0 0 10px rgba(182, 0, 168, 0.7); transition: transform 0.05s linear;"></div>
+
+  <!-- 2. Hero Section -->
+  <section id="hero" class="relative h-screen w-full flex flex-col justify-between overflow-x-clip select-none transition-colors duration-300" style="background-color: var(--bg-main); color: var(--text-main);">
+    
+    <!-- Navbar -->
+    <nav class="w-full flex justify-between items-center px-6 md:px-10 pt-6 md:pt-8 z-20">
+      <a href="#about" class="font-medium uppercase tracking-wider text-sm md:text-lg lg:text-[1.4rem] hover:opacity-70 transition-opacity" style="color: var(--text-main);">About</a>
+      <a href="#projects" class="font-medium uppercase tracking-wider text-sm md:text-lg lg:text-[1.4rem] hover:opacity-70 transition-opacity" style="color: var(--text-main);">Projects</a>
+      <button type="button" onclick="openContactModal()" class="font-medium uppercase tracking-wider text-sm md:text-lg lg:text-[1.4rem] hover:opacity-70 transition-opacity cursor-pointer" style="color: var(--text-main);">Contact</button>
+    </nav>
+
+    <!-- Hero Title -->
+    <div class="w-full overflow-hidden z-0 pointer-events-none">
+      <h1 class="hero-heading font-black uppercase tracking-tight leading-none whitespace-nowrap w-full text-center mt-6 sm:mt-4 md:-mt-2 lg:mt-0 text-[12vw] sm:text-[13vw] md:text-[13.5vw] lg:text-[14vw] xl:text-[13.8vw]">
+        Hi, i'm Naitik
+      </h1>
+    </div>
+
+    <!-- Magnet Hero Portrait -->
+    <div id="magnet-container" class="absolute left-1/2 -translate-x-1/2 z-10 top-1/2 -translate-y-1/2 sm:top-auto sm:translate-y-0 sm:bottom-0 pointer-events-auto">
+      <div id="magnet-item" style="transition: transform 0.6s ease-in-out; will-change: transform;">
+        <img
+          id="hero-portrait"
+          src="naitik.png"
+          alt="Naitik Creator Portrait"
+          class="w-[220px] sm:w-[270px] md:w-[330px] lg:w-[380px] max-h-[55vh] sm:max-h-[62vh] md:max-h-[68vh] object-contain drop-shadow-2xl select-none"
+          draggable="false"
+          onerror="this.src='https://ais-dev-l65ltpo4ialife5nbuvjmx-751295623611.asia-east1.run.app/naitik.png'"
+        />
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="w-full flex justify-between items-end pb-7 sm:pb-8 md:pb-10 px-6 md:px-10 z-20">
+      <p class="font-light uppercase tracking-wide leading-snug max-w-[180px] sm:max-w-[240px] md:max-w-[300px]" style="font-size: clamp(0.75rem, 1.4vw, 1.5rem); color: var(--text-main);">
+        Still exploring &amp; always learning
+      </p>
+      <button type="button" onclick="openContactModal()" class="pill-btn inline-flex items-center justify-center rounded-full font-medium uppercase tracking-widest text-white transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer px-8 py-3 sm:px-10 sm:py-3.5 md:px-12 md:py-4 text-xs sm:text-sm md:text-base">
+        Contact
+      </button>
+    </div>
+  </section>
+
+  <!-- 3. Marquee Section -->
+  <section id="marquee" class="relative pt-24 sm:pt-32 md:pt-40 pb-10 overflow-hidden w-full select-none transition-colors duration-300" style="background-color: var(--bg-main);">
+    <div class="flex flex-col gap-3 w-full">
+      <div class="overflow-hidden w-full">
+        <div id="marquee-row-1" class="flex gap-3 will-change-transform">
+          <img src="https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif" class="w-[420px] h-[270px] min-w-[420px] rounded-2xl object-cover bg-neutral-900 border border-white/5" alt="Preview 1" />
+          <img src="https://motionsites.ai/assets/hero-codenest-preview-Cgppc2qV.gif" class="w-[420px] h-[270px] min-w-[420px] rounded-2xl object-cover bg-neutral-900 border border-white/5" alt="Preview 2" />
+          <img src="https://motionsites.ai/assets/hero-vex-ventures-preview-BczMFIiw.gif" class="w-[420px] h-[270px] min-w-[420px] rounded-2xl object-cover bg-neutral-900 border border-white/5" alt="Preview 3" />
+          <img src="https://motionsites.ai/assets/hero-stellar-ai-v2-preview-DjvxjG3C.gif" class="w-[420px] h-[270px] min-w-[420px] rounded-2xl object-cover bg-neutral-900 border border-white/5" alt="Preview 4" />
+          <img src="https://motionsites.ai/assets/hero-asme-preview-B_nGDnTP.gif" class="w-[420px] h-[270px] min-w-[420px] rounded-2xl object-cover bg-neutral-900 border border-white/5" alt="Preview 5" />
+          <img src="https://motionsites.ai/assets/hero-transform-data-preview-Cx5OU29N.gif" class="w-[420px] h-[270px] min-w-[420px] rounded-2xl object-cover bg-neutral-900 border border-white/5" alt="Preview 6" />
+        </div>
+      </div>
+      <div class="overflow-hidden w-full">
+        <div id="marquee-row-2" class="flex gap-3 will-change-transform">
+          <img src="https://motionsites.ai/assets/hero-stellar-ai-preview-D3HL6bw1.gif" class="w-[420px] h-[270px] min-w-[420px] rounded-2xl object-cover bg-neutral-900 border border-white/5" alt="Preview 7" />
+          <img src="https://motionsites.ai/assets/hero-xportfolio-preview-D4A8maiC.gif" class="w-[420px] h-[270px] min-w-[420px] rounded-2xl object-cover bg-neutral-900 border border-white/5" alt="Preview 8" />
+          <img src="https://motionsites.ai/assets/hero-orbit-web3-preview-BXt4OttD.gif" class="w-[420px] h-[270px] min-w-[420px] rounded-2xl object-cover bg-neutral-900 border border-white/5" alt="Preview 9" />
+          <img src="https://motionsites.ai/assets/hero-nexora-preview-cx5HmUgo.gif" class="w-[420px] h-[270px] min-w-[420px] rounded-2xl object-cover bg-neutral-900 border border-white/5" alt="Preview 10" />
+          <img src="https://motionsites.ai/assets/hero-evr-ventures-preview-DZxeVFEX.gif" class="w-[420px] h-[270px] min-w-[420px] rounded-2xl object-cover bg-neutral-900 border border-white/5" alt="Preview 11" />
+          <img src="https://motionsites.ai/assets/hero-planet-orbit-preview-DWAP8Z1P.gif" class="w-[420px] h-[270px] min-w-[420px] rounded-2xl object-cover bg-neutral-900 border border-white/5" alt="Preview 12" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. About Section -->
+  <section id="about" class="relative min-h-screen w-full flex flex-col items-center justify-center px-5 sm:px-8 md:px-10 py-20 overflow-hidden select-none transition-colors duration-300" style="background-color: var(--bg-main); color: var(--text-main);">
+    <div class="absolute top-[4%] left-[2%] pointer-events-none z-10">
+      <img src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/moon_icon.11395d36.png" class="w-[120px] sm:w-[160px] md:w-[210px] object-contain drop-shadow-2xl" alt="Moon" />
+    </div>
+    <div class="absolute bottom-[8%] left-[4%] pointer-events-none z-10">
+      <img src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/p59_1.4659672e.png" class="w-[100px] sm:w-[140px] md:w-[180px] object-contain drop-shadow-2xl" alt="Abstract" />
+    </div>
+    <div class="absolute top-[4%] right-[2%] pointer-events-none z-10">
+      <img src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/lego_icon-1.703bb594.png" class="w-[120px] sm:w-[160px] md:w-[210px] object-contain drop-shadow-2xl" alt="Lego" />
+    </div>
+    <div class="absolute bottom-[8%] right-[4%] pointer-events-none z-10">
+      <img src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/Group_134-1.2e04f3ce.png" class="w-[130px] sm:w-[170px] md:w-[220px] object-contain drop-shadow-2xl" alt="Sphere Group" />
+    </div>
+
+    <div class="relative z-20 flex flex-col items-center text-center max-w-4xl mx-auto">
+      <h2 class="hero-heading font-black uppercase leading-none tracking-tight text-center" style="font-size: clamp(3rem, 12vw, 160px);">
+        About me
+      </h2>
+      <div class="h-10 sm:h-14 md:h-16"></div>
+      <p class="font-medium text-center leading-relaxed max-w-[560px]" style="font-size: clamp(1rem, 2vw, 1.35rem); color: var(--text-main);">
+        I craft next-generation 3D experiences, spatial interfaces, and kinetic motion identities. Bringing playful imagination together with photorealistic digital execution.
+      </p>
+      <div class="h-16 sm:h-20 md:h-24"></div>
+      <button type="button" onclick="openContactModal()" class="pill-btn inline-flex items-center justify-center rounded-full font-medium uppercase tracking-widest text-white transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer px-8 py-3 sm:px-10 sm:py-3.5 md:px-12 md:py-4 text-xs sm:text-sm md:text-base">
+        Contact
+      </button>
+    </div>
+  </section>
+
+  <!-- 5. Services Section -->
+  <section id="services" class="relative rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] px-5 sm:px-8 md:px-10 py-20 sm:py-24 md:py-32 w-full z-0 overflow-hidden transition-colors duration-300" style="background-color: var(--services-bg); color: var(--services-text);">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="font-black uppercase text-center leading-none tracking-tight mb-16 sm:mb-20 md:mb-28 select-none" style="font-size: clamp(3rem, 12vw, 160px); color: var(--services-text);">
+        Services
+      </h2>
+      <div class="border-t border-current/15">
+        <div class="border-b border-current/15 py-8 sm:py-10 md:py-12">
+          <div class="flex flex-col sm:flex-row sm:items-baseline gap-4 sm:gap-8 md:gap-14 group transition-colors duration-300">
+            <span class="font-black leading-none select-none flex-shrink-0 min-w-[70px] sm:min-w-[120px] md:min-w-[160px] lg:min-w-[190px]" style="font-size: clamp(3rem, 10vw, 140px); color: var(--services-text);">01</span>
+            <div>
+              <h3 class="font-medium uppercase mb-2 sm:mb-3 tracking-tight" style="font-size: clamp(1rem, 2.2vw, 2.1rem); color: var(--services-text);">Motion Design</h3>
+              <p class="font-light leading-relaxed max-w-2xl opacity-70" style="font-size: clamp(0.85rem, 1.6vw, 1.25rem); color: var(--services-text);">Dynamic animations and motion graphics that add energy and storytelling to brands, products, and digital experiences.</p>
+            </div>
+          </div>
+        </div>
+        <div class="border-b border-current/15 py-8 sm:py-10 md:py-12">
+          <div class="flex flex-col sm:flex-row sm:items-baseline gap-4 sm:gap-8 md:gap-14 group transition-colors duration-300">
+            <span class="font-black leading-none select-none flex-shrink-0 min-w-[70px] sm:min-w-[120px] md:min-w-[160px] lg:min-w-[190px]" style="font-size: clamp(3rem, 10vw, 140px); color: var(--services-text);">02</span>
+            <div>
+              <h3 class="font-medium uppercase mb-2 sm:mb-3 tracking-tight" style="font-size: clamp(1rem, 2.2vw, 2.1rem); color: var(--services-text);">Branding</h3>
+              <p class="font-light leading-relaxed max-w-2xl opacity-70" style="font-size: clamp(0.85rem, 1.6vw, 1.25rem); color: var(--services-text);">Crafting cohesive visual identities — from logos to full brand systems — that communicate a clear and memorable presence.</p>
+            </div>
+          </div>
+        </div>
+        <div class="border-b border-current/15 py-8 sm:py-10 md:py-12">
+          <div class="flex flex-col sm:flex-row sm:items-baseline gap-4 sm:gap-8 md:gap-14 group transition-colors duration-300">
+            <span class="font-black leading-none select-none flex-shrink-0 min-w-[70px] sm:min-w-[120px] md:min-w-[160px] lg:min-w-[190px]" style="font-size: clamp(3rem, 10vw, 140px); color: var(--services-text);">03</span>
+            <div>
+              <h3 class="font-medium uppercase mb-2 sm:mb-3 tracking-tight" style="font-size: clamp(1rem, 2.2vw, 2.1rem); color: var(--services-text);">Web Design</h3>
+              <p class="font-light leading-relaxed max-w-2xl opacity-70" style="font-size: clamp(0.85rem, 1.6vw, 1.25rem); color: var(--services-text);">Designing clean, modern, and conversion-focused websites with attention to layout, typography, and user experience.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Projects Section -->
+  <section id="projects" class="relative rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] -mt-10 sm:-mt-12 md:-mt-14 z-10 px-4 sm:px-6 md:px-10 pt-20 sm:pt-24 md:pt-28 pb-32 transition-colors duration-300" style="background-color: var(--bg-main); color: var(--text-main);">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="hero-heading font-black uppercase text-center leading-none tracking-tight select-none mb-14 sm:mb-20 md:mb-24" style="font-size: clamp(3rem, 12vw, 160px);">
+        Project
+      </h2>
+
+      <div class="relative w-full flex flex-col gap-8">
+        <!-- Project 1 -->
+        <div class="sticky top-24 w-full rounded-[40px] sm:rounded-[50px] md:rounded-[60px] border-2 p-4 sm:p-6 md:p-8 shadow-2xl shadow-black/40 flex flex-col justify-between overflow-hidden transition-colors duration-300" style="background-color: var(--card-bg); border-color: var(--border-card); color: var(--text-main);">
+          <div class="flex flex-wrap items-center justify-between gap-4 mb-4 sm:mb-6 select-none">
+            <div class="flex items-center gap-3 sm:gap-6 md:gap-8 flex-wrap">
+              <span class="font-black leading-none select-none" style="font-size: clamp(2.5rem, 8vw, 120px); color: var(--text-main);">01</span>
+              <div>
+                <span class="text-xs sm:text-sm uppercase tracking-widest font-light" style="color: var(--text-sub);">Client</span>
+                <h3 class="font-medium uppercase tracking-tight" style="font-size: clamp(1.1rem, 2.5vw, 2.4rem); color: var(--text-main);">Nextlevel Studio</h3>
+              </div>
+            </div>
+            <button type="button" onclick="openProjectModal(0)" class="rounded-full border-2 border-[#D7E2EA] text-[#D7E2EA] font-medium uppercase tracking-widest hover:bg-[#D7E2EA]/10 transition-colors px-6 py-2.5 text-xs sm:text-sm cursor-pointer">Live Project</button>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-10 gap-3 sm:gap-4 md:gap-5 w-full">
+            <div class="md:col-span-4 flex flex-col gap-3 sm:gap-4 md:gap-5">
+              <img src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055344_5eff02e0-87a5-41ce-b64f-eb08da8f33db.png&w=1280&q=85" class="w-full h-44 sm:h-52 object-cover rounded-[32px] border border-white/5 bg-neutral-900" alt="Nextlevel Detail 1" />
+              <img src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055431_11d841fd-8b41-46a5-82e4-b04f2407a7d8.png&w=1280&q=85" class="w-full h-44 sm:h-52 object-cover rounded-[32px] border border-white/5 bg-neutral-900" alt="Nextlevel Detail 2" />
+            </div>
+            <div class="md:col-span-6 flex">
+              <img src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055451_e317bf2d-28d4-48cc-86b0-6f72f25b6327.png&w=1280&q=85" class="w-full h-full min-h-[290px] rounded-[32px] object-cover border border-white/5 bg-neutral-900" alt="Nextlevel Hero" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="sticky top-28 w-full rounded-[40px] sm:rounded-[50px] md:rounded-[60px] border-2 p-4 sm:p-6 md:p-8 shadow-2xl shadow-black/40 flex flex-col justify-between overflow-hidden transition-colors duration-300" style="background-color: var(--card-bg); border-color: var(--border-card); color: var(--text-main);">
+          <div class="flex flex-wrap items-center justify-between gap-4 mb-4 sm:mb-6 select-none">
+            <div class="flex items-center gap-3 sm:gap-6 md:gap-8 flex-wrap">
+              <span class="font-black leading-none select-none" style="font-size: clamp(2.5rem, 8vw, 120px); color: var(--text-main);">02</span>
+              <div>
+                <span class="text-xs sm:text-sm uppercase tracking-widest font-light" style="color: var(--text-sub);">Personal</span>
+                <h3 class="font-medium uppercase tracking-tight" style="font-size: clamp(1.1rem, 2.5vw, 2.4rem); color: var(--text-main);">Aura Brand Identity</h3>
+              </div>
+            </div>
+            <button type="button" onclick="openProjectModal(1)" class="rounded-full border-2 border-[#D7E2EA] text-[#D7E2EA] font-medium uppercase tracking-widest hover:bg-[#D7E2EA]/10 transition-colors px-6 py-2.5 text-xs sm:text-sm cursor-pointer">Live Project</button>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-10 gap-3 sm:gap-4 md:gap-5 w-full">
+            <div class="md:col-span-4 flex flex-col gap-3 sm:gap-4 md:gap-5">
+              <img src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055654_911201c5-36d9-4bc6-bac7-331adfce159f.png&w=1280&q=85" class="w-full h-44 sm:h-52 object-cover rounded-[32px] border border-white/5 bg-neutral-900" alt="Aura Detail 1" />
+              <img src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055723_5ceda0b8-d9c2-4665-b2e3-83ba19ba76d1.png&w=1280&q=85" class="w-full h-44 sm:h-52 object-cover rounded-[32px] border border-white/5 bg-neutral-900" alt="Aura Detail 2" />
+            </div>
+            <div class="md:col-span-6 flex">
+              <img src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055753_adc5dcbd-a8e6-49c0-b43a-9b030d835cea.png&w=1280&q=85" class="w-full h-full min-h-[290px] rounded-[32px] object-cover border border-white/5 bg-neutral-900" alt="Aura Hero" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="sticky top-32 w-full rounded-[40px] sm:rounded-[50px] md:rounded-[60px] border-2 p-4 sm:p-6 md:p-8 shadow-2xl shadow-black/40 flex flex-col justify-between overflow-hidden transition-colors duration-300" style="background-color: var(--card-bg); border-color: var(--border-card); color: var(--text-main);">
+          <div class="flex flex-wrap items-center justify-between gap-4 mb-4 sm:mb-6 select-none">
+            <div class="flex items-center gap-3 sm:gap-6 md:gap-8 flex-wrap">
+              <span class="font-black leading-none select-none" style="font-size: clamp(2.5rem, 8vw, 120px); color: var(--text-main);">03</span>
+              <div>
+                <span class="text-xs sm:text-sm uppercase tracking-widest font-light" style="color: var(--text-sub);">Client</span>
+                <h3 class="font-medium uppercase tracking-tight" style="font-size: clamp(1.1rem, 2.5vw, 2.4rem); color: var(--text-main);">Solaris Digital</h3>
+              </div>
+            </div>
+            <button type="button" onclick="openProjectModal(2)" class="rounded-full border-2 border-[#D7E2EA] text-[#D7E2EA] font-medium uppercase tracking-widest hover:bg-[#D7E2EA]/10 transition-colors px-6 py-2.5 text-xs sm:text-sm cursor-pointer">Live Project</button>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-10 gap-3 sm:gap-4 md:gap-5 w-full">
+            <div class="md:col-span-4 flex flex-col gap-3 sm:gap-4 md:gap-5">
+              <img src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055759_963cfb0b-4bd1-4b0f-9d0a-09bd6cf95b2f.png&w=1280&q=85" class="w-full h-44 sm:h-52 object-cover rounded-[32px] border border-white/5 bg-neutral-900" alt="Solaris Detail 1" />
+              <img src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_060108_438f781a-9846-4dcc-89ab-c4e6cb830f5b.png&w=1280&q=85" class="w-full h-44 sm:h-52 object-cover rounded-[32px] border border-white/5 bg-neutral-900" alt="Solaris Detail 2" />
+            </div>
+            <div class="md:col-span-6 flex">
+              <img src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055818_9d062121-ad7e-46b9-999a-1a6a692ef1ee.png&w=1280&q=85" class="w-full h-full min-h-[290px] rounded-[32px] object-cover border border-white/5 bg-neutral-900" alt="Solaris Hero" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Footer -->
+  <footer class="w-full border-t px-6 sm:px-10 py-10 flex flex-col md:flex-row items-center justify-between gap-6 text-xs select-none transition-colors duration-300" style="background-color: var(--footer-bg); border-color: var(--footer-border); color: var(--text-sub);">
+    <div class="flex items-center gap-3">
+      <span class="font-bold uppercase tracking-widest" style="color: var(--text-main);">Naitik</span>
+      <span>&mdash;</span>
+      <span>3D Creator & Visual Designer</span>
+    </div>
+
+    <div class="flex items-center gap-4 sm:gap-6 uppercase tracking-wider text-[11px] flex-wrap justify-center">
+      <a href="#hero" class="hover:opacity-100 opacity-70 transition-opacity">Back to top &uarr;</a>
+      <a href="#about" class="hover:opacity-100 opacity-70 transition-opacity">About</a>
+      <a href="#projects" class="hover:opacity-100 opacity-70 transition-opacity">Projects</a>
+      <button type="button" onclick="openContactModal()" class="hover:opacity-100 opacity-70 transition-opacity cursor-pointer">Contact</button>
+
+      <button id="theme-toggle-btn" type="button" onclick="toggleTheme()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border transition-all cursor-pointer text-[10px] font-semibold uppercase tracking-wider hover:scale-105 active:scale-95" style="background-color: var(--theme-btn-bg); border-color: var(--border-sub); color: var(--text-main);">
+        <span id="theme-icon">☀️</span>
+        <span id="theme-text">Light</span>
+      </button>
+    </div>
+
+    <div>
+      &copy; 2026 Naitik. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- 8. Contact Modal -->
+  <div id="contact-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 overflow-y-auto">
+    <div onclick="closeContactModal()" class="fixed inset-0 bg-black/80 backdrop-blur-md"></div>
+    <div class="relative w-full max-w-xl glass-modal p-6 sm:p-8 md:p-10 text-[#D7E2EA] z-10 my-8 overflow-hidden">
+      <div class="absolute -top-24 -right-24 w-60 h-60 bg-purple-600/20 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-24 -left-24 w-60 h-60 bg-blue-600/15 rounded-full blur-3xl pointer-events-none"></div>
+
+      <button onclick="closeContactModal()" class="absolute top-6 right-6 text-[#D7E2EA]/60 hover:text-white p-2 rounded-full hover:bg-white/5 transition-colors cursor-pointer">✕</button>
+
+      <div class="mb-6">
+        <span class="text-xs uppercase tracking-widest text-[#BBCCD7] font-medium flex items-center gap-1.5 mb-2">✨ Start a Collaboration</span>
+        <h2 class="text-2xl sm:text-3xl font-black uppercase text-white tracking-tight">Let's Build Something Incredible</h2>
+        <p class="text-sm text-[#D7E2EA]/70 mt-1 font-light">Have an inquiry, vision, or project in mind? Reach out directly.</p>
+      </div>
+
+      <div class="flex items-center justify-between p-3.5 mb-6 rounded-2xl bg-white/5 border border-white/10 text-xs sm:text-sm">
+        <a href="mailto:naitiksurana13@gmail.com" class="flex items-center gap-2.5 overflow-hidden hover:opacity-80 transition-opacity">
+          <span>✉️</span>
+          <span class="truncate font-mono text-white/90">naitiksurana13@gmail.com</span>
+        </a>
+        <button type="button" onclick="copyEmail()" id="copy-btn" class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer text-xs uppercase tracking-wider">Copy</button>
+      </div>
+
+      <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-[#D7E2EA]/70 mb-1.5 font-medium">Your Name</label>
+            <input required id="form-name" type="text" placeholder="Jane Doe" class="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 focus:border-[#BBCCD7] focus:outline-none text-white text-sm placeholder:text-white/30" />
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-[#D7E2EA]/70 mb-1.5 font-medium">Email Address</label>
+            <input required id="form-email" type="email" placeholder="jane@company.com" class="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 focus:border-[#BBCCD7] focus:outline-none text-white text-sm placeholder:text-white/30" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-[#D7E2EA]/70 mb-1.5 font-medium">Contact reason</label>
+          <textarea required id="form-message" rows="4" placeholder="Tell me about your reason for reaching out, ideas, or how we can collaborate..." class="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 focus:border-[#BBCCD7] focus:outline-none text-white text-sm placeholder:text-white/30 resize-none"></textarea>
+        </div>
+
+        <div class="pt-2 flex justify-end">
+          <button id="submit-btn" type="submit" class="pill-btn inline-flex items-center justify-center rounded-full font-medium uppercase tracking-widest text-white transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer px-8 py-3 text-xs sm:text-sm">
+            Send Message
+          </button>
+        </div>
+      </form>
+
+      <div id="contact-success" class="hidden py-6 text-center">
+        <div class="w-14 h-14 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center mx-auto mb-4 border border-green-500/40 text-2xl">✓</div>
+        <h3 class="text-xl sm:text-2xl font-bold uppercase text-white mb-2">Message Sent!</h3>
+        <p class="text-sm text-[#D7E2EA]/80 mb-6 max-w-sm mx-auto">Your message has been sent to <span class="text-white font-mono font-medium">naitiksurana13@gmail.com</span>.</p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-6">
+          <a id="success-gmail-link" href="#" target="_blank" class="w-full sm:w-auto px-5 py-2.5 rounded-full bg-purple-600 hover:bg-purple-500 text-white text-xs uppercase tracking-wider font-semibold transition-colors">Open in Gmail</a>
+          <a id="success-mailto-link" href="#" class="w-full sm:w-auto px-5 py-2.5 rounded-full border border-white/20 hover:bg-white/10 text-white text-xs uppercase tracking-wider font-semibold transition-colors">Open Mail App</a>
+        </div>
+        <button type="button" onclick="resetContactForm()" class="text-xs text-[#D7E2EA]/60 hover:text-white underline cursor-pointer">Send another message</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. Project Detail Modal -->
+  <div id="project-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 overflow-y-auto">
+    <div onclick="closeProjectModal()" class="fixed inset-0 bg-black/85 backdrop-blur-md"></div>
+    <div class="relative w-full max-w-4xl glass-modal p-6 sm:p-8 md:p-10 text-[#D7E2EA] z-10 my-8 overflow-hidden max-h-[90vh] overflow-y-auto">
+      <button onclick="closeProjectModal()" class="absolute top-6 right-6 text-[#D7E2EA]/60 hover:text-white p-2 rounded-full hover:bg-white/5 transition-colors cursor-pointer z-10">✕</button>
+      <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <span id="proj-number" class="text-sm font-mono text-[#BBCCD7] px-2.5 py-0.5 rounded-full bg-white/10 uppercase tracking-wider">01</span>
+            <span id="proj-category" class="text-xs uppercase tracking-widest text-purple-400 font-medium">Client Project</span>
+          </div>
+          <h2 id="proj-title" class="text-2xl sm:text-4xl font-black uppercase tracking-tight text-white">Nextlevel Studio</h2>
+        </div>
+      </div>
+      <p id="proj-desc" class="text-sm sm:text-base text-[#D7E2EA]/80 font-light leading-relaxed mb-6">Description...</p>
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 mb-8">
+        <div class="md:col-span-5 flex flex-col gap-4">
+          <img id="proj-img-1" src="" class="w-full h-48 sm:h-56 object-cover rounded-[24px] border border-white/10" alt="Detail 1" />
+          <img id="proj-img-2" src="" class="w-full h-56 sm:h-64 object-cover rounded-[24px] border border-white/10" alt="Detail 2" />
+        </div>
+        <div class="md:col-span-7">
+          <img id="proj-img-3" src="" class="w-full h-full min-h-[300px] object-cover rounded-[24px] border border-white/10" alt="Hero" />
+        </div>
+      </div>
+      <div class="flex items-center justify-between pt-4 border-t border-white/10">
+        <span class="text-xs text-[#D7E2EA]/60 uppercase tracking-widest">Ready for a custom creation like this?</span>
+        <button type="button" onclick="closeProjectModal(); openContactModal();" class="text-sm font-semibold uppercase tracking-wider text-purple-400 hover:text-purple-300 transition-colors cursor-pointer">Discuss Your Project &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const projects = [
+      {
+        number: '01',
+        title: 'Nextlevel Studio',
+        category: 'Client',
+        description: 'Immersive CGI environment and surreal product visualizer developed for Nextlevel Creative Studio. Focuses on metallic iridescent materials, complex glass refraction, and futuristic geometric symmetry.',
+        img1: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055344_5eff02e0-87a5-41ce-b64f-eb08da8f33db.png&w=1280&q=85',
+        img2: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055431_11d841fd-8b41-46a5-82e4-b04f2407a7d8.png&w=1280&q=85',
+        img3: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055451_e317bf2d-28d4-48cc-86b0-6f72f25b6327.png&w=1280&q=85'
+      },
+      {
+        number: '02',
+        title: 'Aura Brand Identity',
+        category: 'Personal',
+        description: 'A holistic spatial identity exploration combining organic fluid typography with tactile obsidian and chrome textures. Formulated to examine digital luxury across multi-dimensional brand surfaces.',
+        img1: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055654_911201c5-36d9-4bc6-bac7-331adfce159f.png&w=1280&q=85',
+        img2: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055723_5ceda0b8-d9c2-4665-b2e3-83ba19ba76d1.png&w=1280&q=85',
+        img3: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055753_adc5dcbd-a8e6-49c0-b43a-9b030d835cea.png&w=1280&q=85'
+      },
+      {
+        number: '03',
+        title: 'Solaris Digital',
+        category: 'Client',
+        description: 'Futuristic computing hardware visualization and kinetic motion identity for Solaris Digital. Engineered with dynamic glowing fiber-optics, micro-circuitry, and atmospheric volumetric fog.',
+        img1: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055759_963cfb0b-4bd1-4b0f-9d0a-09bd6cf95b2f.png&w=1280&q=85',
+        img2: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_060108_438f781a-9846-4dcc-89ab-c4e6cb830f5b.png&w=1280&q=85',
+        img3: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055818_9d062121-ad7e-46b9-999a-1a6a692ef1ee.png&w=1280&q=85'
+      }
+    ];
+
+    // Scroll Progress & Marquee
+    window.addEventListener('scroll', () => {
+      const scrollTotal = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollTotal > 0 ? window.scrollY / scrollTotal : 0;
+      document.getElementById('scroll-progress-bar').style.transform = `scaleX(${progress})`;
+      
+      const offset = (window.scrollY) * 0.35;
+      const r1 = document.getElementById('marquee-row-1');
+      const r2 = document.getElementById('marquee-row-2');
+      if (r1) r1.style.transform = `translateX(${offset - 200}px)`;
+      if (r2) r2.style.transform = `translateX(-${offset - 200}px)`;
+    }, { passive: true });
+
+    // Magnet Effect
+    const magnetContainer = document.getElementById('magnet-container');
+    const magnetItem = document.getElementById('magnet-item');
+    if (magnetContainer && magnetItem) {
+      const padding = 150;
+      const strength = 3;
+
+      window.addEventListener('mousemove', (e) => {
+        const rect = magnetContainer.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const dist = Math.hypot(e.clientX - centerX, e.clientY - centerY);
+        const threshold = Math.max(rect.width, rect.height) / 2 + padding;
+
+        if (dist < threshold) {
+          const offsetX = (e.clientX - centerX) / strength;
+          const offsetY = (e.clientY - centerY) / strength;
+          magnetItem.style.transition = 'transform 0.3s ease-out';
+          magnetItem.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+        } else {
+          magnetItem.style.transition = 'transform 0.6s ease-in-out';
+          magnetItem.style.transform = 'translate(0px, 0px)';
+        }
+      });
+    }
+
+    // Theme Management
+    function initTheme() {
+      const saved = localStorage.getItem('naitik_theme') || 'dark';
+      applyTheme(saved);
+    }
+
+    function applyTheme(theme) {
+      if (theme === 'light') {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
+        document.getElementById('theme-icon').textContent = '🌙';
+        document.getElementById('theme-text').textContent = 'Dark';
+      } else {
+        document.documentElement.classList.remove('light');
+        document.documentElement.classList.add('dark');
+        document.getElementById('theme-icon').textContent = '☀️';
+        document.getElementById('theme-text').textContent = 'Light';
+      }
+      localStorage.setItem('naitik_theme', theme);
+    }
+
+    function toggleTheme() {
+      const isLight = document.documentElement.classList.contains('light');
+      applyTheme(isLight ? 'dark' : 'light');
+    }
+
+    initTheme();
+
+    const cachedPortrait = localStorage.getItem('naitik_custom_portrait');
+    if (cachedPortrait) {
+      const img = document.getElementById('hero-portrait');
+      if (img) img.src = cachedPortrait;
+    }
+
+    // Contact Modal
+    function openContactModal() {
+      const modal = document.getElementById('contact-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeContactModal() {
+      const modal = document.getElementById('contact-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function copyEmail() {
+      navigator.clipboard.writeText('naitiksurana13@gmail.com');
+      const btn = document.getElementById('copy-btn');
+      btn.textContent = 'Copied!';
+      setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+    }
+
+    async function handleContactSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('form-name').value;
+      const email = document.getElementById('form-email').value;
+      const message = document.getElementById('form-message').value;
+      const submitBtn = document.getElementById('submit-btn');
+
+      submitBtn.textContent = 'Sending...';
+      submitBtn.disabled = true;
+
+      try {
+        await fetch('https://formsubmit.co/ajax/naitiksurana13@gmail.com', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({ name, email, _subject: `Portfolio Message from ${name}`, 'Contact Reason': message, message })
+        });
+      } catch (err) {}
+
+      try {
+        await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, message })
+        });
+      } catch (err) {}
+
+      const subject = encodeURIComponent(`Portfolio Inquiry from ${name}`);
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nContact Reason:\n${message}`);
+      document.getElementById('success-gmail-link').href = `https://mail.google.com/mail/?view=cm&fs=1&to=naitiksurana13@gmail.com&su=${subject}&body=${body}`;
+      document.getElementById('success-mailto-link').href = `mailto:naitiksurana13@gmail.com?subject=${subject}&body=${body}`;
+
+      document.getElementById('contact-form').classList.add('hidden');
+      document.getElementById('contact-success').classList.remove('hidden');
+      submitBtn.textContent = 'Send Message';
+      submitBtn.disabled = false;
+    }
+
+    function resetContactForm() {
+      document.getElementById('contact-form').reset();
+      document.getElementById('contact-form').classList.remove('hidden');
+      document.getElementById('contact-success').classList.add('hidden');
+    }
+
+    // Project Detail Modal
+    function openProjectModal(index) {
+      const p = projects[index];
+      if (!p) return;
+      document.getElementById('proj-number').textContent = p.number;
+      document.getElementById('proj-category').textContent = p.category + ' Project';
+      document.getElementById('proj-title').textContent = p.title;
+      document.getElementById('proj-desc').textContent = p.description;
+      document.getElementById('proj-img-1').src = p.img1;
+      document.getElementById('proj-img-2').src = p.img2;
+      document.getElementById('proj-img-3').src = p.img3;
+
+      const modal = document.getElementById('project-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeProjectModal() {
+      const modal = document.getElementById('project-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeContactModal();
+        closeProjectModal();
+      }
+    });
+  </script>
+</body>
+</html>
